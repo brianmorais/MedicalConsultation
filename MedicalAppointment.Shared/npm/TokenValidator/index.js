@@ -1,0 +1,25 @@
+const axios = require('axios').default;
+
+const validateToken = async (req, res, next) => {
+  try {
+    if (!req.headers.authorization) {
+      throw new Error('token is not defined');
+    }
+    const response = await axios.post(`${process.env.AUTH_URL}/api/v1/auth/validate`, {
+      token: req.headers.authorization
+    }, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+    if (!response.data) {
+      throw new Error('token is invalid');
+    }
+    req.role = response.data.role;
+    next();
+  } catch (error) {
+    return res.status(401).json(error.message);
+  }
+}
+
+module.exports = { validateToken, validateRole };
