@@ -16,10 +16,21 @@ export class AuthUseCase implements IAuthUseCase {
 
   async validate(token: string): Promise<ResponseModel> {
     try {
-      const tokenContent = token.split(' ');
-      const decoded = jwt.verify(tokenContent[tokenContent.length - 1], process.env.JWT_SECRET as string);
-      this.logger.info(`[AuthUseCase][validate] - Success on valiate token: ${token}`);
-      return await Promise.resolve(new ResponseModel(decoded));
+      if (token.toLowerCase().startsWith('bearer')) {
+        const decoded = jwt.verify(token.split(' ')[1], process.env.JWT_SECRET as string);
+        this.logger.info(`[AuthUseCase][validate] - Success on valiate token: ${token}`);
+        return await Promise.resolve(new ResponseModel(decoded));
+      } else if (token.toLowerCase().startsWith('basic')) {
+        const tokenValue = token.split(' ')[1];
+        const credentials = Buffer.from(tokenValue, 'base64').toString('ascii');
+        const [username, password] = credentials.split(':');
+        if (username !== process.env.BASIC_USERNAME && password !== process.env.BASIC_PASSWORD) {
+          throw new Error('token is invalid');
+        }
+        this.logger.info(`[AuthUseCase][validate] - Success on valiate token: ${token}`);
+        return await Promise.resolve(new ResponseModel({role: 'system'}));
+      }
+      throw new Error('token is invalid');
     } catch (error: any) {
       return new ResponseModel({}, [error.message]);
     }
