@@ -15,10 +15,20 @@ const validateToken = async (req, res, next) => {
     if (!response.data) {
       throw new Error('token is invalid');
     }
-    req.role = response.data.role;
+    req.role = response.data.data.role;
     next();
   } catch (error) {
-    return res.status(401).json(error.message);
+    return res.status(401).json({ data: {}, notifications: [error.message]});
+  }
+}
+
+const validateRole = (role) => {
+  return (req, res, next) => {
+    const roles = role.split(',');
+    if (!req.role || !roles.includes(req.role)) {
+      return res.status(403).json({ data: {}, notifications: ['insufficient permissions']});
+    }
+    next();
   }
 }
 
