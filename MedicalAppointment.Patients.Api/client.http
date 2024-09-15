@@ -1,0 +1,31 @@
+POST http://localhost:3002/api/v1/patients HTTP/1.1
+Content-Type: application/json
+Authorization: bearer ...
+
+{
+    "firstName": "Paciente",
+    "lastName": "de Tal",
+    "phoneNumber": "99 99999-9999",
+    "email": "paciente.de.tal@gmail.com",
+    "document": "12345678920"
+}
+
+###
+
+PUT http://localhost:3002/api/v1/patients HTTP/1.1
+Content-Type: application/json
+Authorization: bearer ...
+
+{
+    "id": "66e6d57de37d25652cccefa4",
+    "firstName": "Ciclano",
+    "lastName": "Editado",
+    "phoneNumber": "99 99999-9999",
+    "email": "ciclano.de.tal@gmail.com",
+    "document": "12345678912"
+}
+
+###
+
+GET http://localhost:3002/api/v1/patients/12345678912 HTTP/1.1
+Authorization: bearer ...
