@@ -3,7 +3,7 @@ const axios = require('axios').default;
 const validateToken = async (req, res, next) => {
   try {
     if (!req.headers.authorization) {
-      throw new Error('token is not defined');
+      throw new Error();
     }
     const response = await axios.post(`${process.env.AUTH_URL}/api/v1/auth/validate`, {
       token: req.headers.authorization
@@ -13,12 +13,12 @@ const validateToken = async (req, res, next) => {
       }
     });
     if (!response.data) {
-      throw new Error('token is invalid');
+      throw new Error();
     }
     req.role = response.data.data.role;
     next();
   } catch (error) {
-    return res.status(401).json({ data: {}, notifications: [error.message]});
+    return res.status(401).json({ data: {}, notifications: ['token is invalid']});
   }
 }
 
