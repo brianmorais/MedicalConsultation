@@ -31,7 +31,7 @@ export class DoctorRouter {
     this.router.post(
       '/api/v1/doctors', 
       validateToken, 
-      validateRole('admin,doctor'), 
+      validateRole('admin'), 
       async (request: Request, response: Response) => 
         this.doctorController.addDoctor(request, response)
     );
@@ -39,7 +39,7 @@ export class DoctorRouter {
     this.router.put(
       '/api/v1/doctors', 
       validateToken, 
-      validateRole('admin,doctor'), 
+      validateRole('admin'), 
       async (request: Request, response: Response) => 
         this.doctorController.updateDoctor(request, response)
     );

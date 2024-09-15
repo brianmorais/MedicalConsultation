@@ -59,7 +59,7 @@ export class DoctorController {
         return response.status(400).json(updated);
       }
 
-      return response.status(updated.notifications.length > 0 ? 400 : 200).json(updated);
+      return response.status(200).json(updated);
     } catch (error: any) {
       this.logger.error(`[DoctorControler][updateDoctor] - Error on update doctor: ${error.message}`);
       return response.status(500).json(new ResponseModel({}, [error.message]));
