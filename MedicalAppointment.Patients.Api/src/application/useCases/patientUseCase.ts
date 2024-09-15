@@ -47,7 +47,7 @@ export class PatientUseCase implements IPatientUseCase {
     const patientEntity = PatientDataMapping.FromModelToEntity(patient);
     const inserted = await this.patientRepository.addPatient(patientEntity);
     if (!inserted) {
-      this.logger.info('[PatientUseCase][addPatient] - Error on add patient');
+      this.logger.warn('[PatientUseCase][addPatient] - Error on add patient');
       notifications.push('Error on add patient');
       return new ResponseModel({}, notifications);
     }
@@ -66,5 +66,22 @@ export class PatientUseCase implements IPatientUseCase {
 
     const patientModel = PatientDataMapping.FromEntityToModel(patient);
     return new ResponseModel(patientModel);
+  }
+
+  async getReportData(patientDocuments: string[]): Promise<ResponseModel> {
+    this.logger.info('[PatientUseCase][getReportData] - Start the get report data');
+    if (!patientDocuments || patientDocuments.length <= 0) {
+      this.logger.warn('[PatientUseCase][getReportData] - Patient documents is null or undefined');
+      return new ResponseModel({}, ['Patient documents is null or undefined']);
+    }
+
+    const patients = await this.patientRepository.getReportData(patientDocuments);
+    if (!patients) {
+      return new ResponseModel({}, ['Report data not found']);
+    }
+
+    const patientsModelArray = PatientDataMapping.FromEntityArrayToModelArray(patients);
+    this.logger.info('[PatientUseCase][getReportData] - Success on get report data');
+    return new ResponseModel(patientsModelArray);
   }
 }

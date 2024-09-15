@@ -48,9 +48,24 @@ export class PatientController {
         return response.status(400).json(updated);
       }
 
-      return response.status(updated.notifications.length > 0 ? 400 : 200).json(updated);
+      return response.status(200).json(updated);
     } catch (error: any) {
       this.logger.error(`[PatientController][updatePatient] - Error on update patient: ${error.message}`);
+      return response.status(500).json(new ResponseModel({}, [error.message]));
+    }
+  }
+
+  async getReportData(request: Request, response: Response): Promise<Response> {
+    try {
+      const patientDocuments = request.body as string[];
+      const data = await this.patientUseCase.getReportData(patientDocuments);
+      if (data.notifications.length > 0) {
+        this.logger.warn(`[PatientController][getReportData] - Error on update patient: ${data.notifications.join(',')}`);
+        return response.status(400).json(data);
+      }
+      return response.status(200).json(data);
+    } catch (error: any) {
+      this.logger.error('[PatientController][getReportData] - Error on get report data');
       return response.status(500).json(new ResponseModel({}, [error.message]));
     }
   }

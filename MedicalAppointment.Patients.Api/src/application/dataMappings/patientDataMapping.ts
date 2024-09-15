@@ -23,4 +23,8 @@ export class PatientDataMapping {
     entity.document = model.document;
     return entity;
   }
+
+  static FromEntityArrayToModelArray(entityArray: Patient[]): PatientModel[] {
+    return entityArray.map(p => this.FromEntityToModel(p));
+  }
 }

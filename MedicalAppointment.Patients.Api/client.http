@@ -1,20 +1,20 @@
 POST http://localhost:3002/api/v1/patients HTTP/1.1
 Content-Type: application/json
-Authorization: bearer ...
+Authorization: bearer 
 
 {
-    "firstName": "Paciente",
+    "firstName": "Novo",
     "lastName": "de Tal",
     "phoneNumber": "99 99999-9999",
-    "email": "paciente.de.tal@gmail.com",
-    "document": "12345678920"
+    "email": "novo.de.tal@gmail.com",
+    "document": "12345678930"
 }
 
 ###
 
 PUT http://localhost:3002/api/v1/patients HTTP/1.1
 Content-Type: application/json
-Authorization: bearer ...
+Authorization: bearer 
 
 {
     "id": "66e6d57de37d25652cccefa4",
@@ -28,4 +28,15 @@ Authorization: bearer ...
 ###
 
 GET http://localhost:3002/api/v1/patients/12345678912 HTTP/1.1
-Authorization: bearer ...
+Authorization: bearer 
+
+###
+
+POST http://localhost:3002/api/v1/patients/get-report HTTP/1.1
+Content-Type: application/json
+Authorization: bearer 
+
+[
+    "12345678912",
+    "12345678930"
+]

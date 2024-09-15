@@ -15,7 +15,7 @@ export class PatientRouter {
     this.router.get(
       '/api/v1/patients/:document', 
       validateToken, 
-      validateRole('admin,doctor,patient'), 
+      validateRole('admin,patient'), 
       async (request: Request, response: Response) => 
         this.patientController.getByDocument(request, response)
     );
@@ -23,7 +23,7 @@ export class PatientRouter {
     this.router.put(
       '/api/v1/patients', 
       validateToken, 
-      validateRole('admin,doctor,patient'), 
+      validateRole('admin'), 
       async (request: Request, response: Response) => 
         this.patientController.updatePatient(request, response)
     );
@@ -31,9 +31,17 @@ export class PatientRouter {
     this.router.post(
       '/api/v1/patients', 
       validateToken, 
-      validateRole('admin,doctor'), 
+      validateRole('admin'), 
       async (request: Request, response: Response) => 
         this.patientController.addPatient(request, response)
+    );
+
+    this.router.post(
+      '/api/v1/patients/get-report', 
+      validateToken, 
+      validateRole('admin,doctor'), 
+      async (request: Request, response: Response) => 
+        this.patientController.getReportData(request, response)
     );
   }
 } 
