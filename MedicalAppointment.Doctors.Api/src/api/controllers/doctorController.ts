@@ -43,7 +43,7 @@ export class DoctorController {
         return response.status(400).json(inserted);
       }
 
-      return response.status(200).json(new ResponseModel(inserted));
+      return response.status(200).json(inserted);
     } catch (error: any) {
       this.logger.error(`[DoctorControler][addDoctor] - Error on add doctor: ${error.message}`);
       return response.status(500).json(new ResponseModel({}, [error.message]));
