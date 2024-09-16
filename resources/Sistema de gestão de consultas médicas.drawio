@@ -578,7 +578,7 @@
         <mxCell id="CkERMcAL62sxhb5fk0np-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="5aheNpZQuoY_7gxwnlZY-2" source="CkERMcAL62sxhb5fk0np-1" target="CkERMcAL62sxhb5fk0np-2" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5aheNpZQuoY_7gxwnlZY-3" value="MedicalConsultation.Api" style="swimlane;html=1;startSize=20;" parent="5aheNpZQuoY_7gxwnlZY-1" vertex="1">
+        <mxCell id="5aheNpZQuoY_7gxwnlZY-3" value="Consultation.Api" style="swimlane;html=1;startSize=20;" parent="5aheNpZQuoY_7gxwnlZY-1" vertex="1">
           <mxGeometry x="260" y="20" width="250" height="730" as="geometry" />
         </mxCell>
         <mxCell id="YgnIU1rduKCY0OMWauJN-1" value="Faz a busca das agendas dos médicos. api/v1/consultations/{specialty}" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="5aheNpZQuoY_7gxwnlZY-3" vertex="1">
@@ -647,7 +647,7 @@
         <mxCell id="ML1eBS059NWPmQmt1HK8-3" value="Faz autenticação no sistema" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="GRuuMbuxemEdAehZPk6J-2" vertex="1">
           <mxGeometry x="80" y="130" width="120" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="GRuuMbuxemEdAehZPk6J-3" value="MedicalConsultation.Api" style="swimlane;html=1;startSize=20;" parent="GRuuMbuxemEdAehZPk6J-1" vertex="1">
+        <mxCell id="GRuuMbuxemEdAehZPk6J-3" value="Consultation.Api" style="swimlane;html=1;startSize=20;" parent="GRuuMbuxemEdAehZPk6J-1" vertex="1">
           <mxGeometry x="280" y="20" width="400" height="1450" as="geometry" />
         </mxCell>
         <mxCell id="ML1eBS059NWPmQmt1HK8-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;" parent="GRuuMbuxemEdAehZPk6J-3" source="ML1eBS059NWPmQmt1HK8-5" target="ML1eBS059NWPmQmt1HK8-9" edge="1">
@@ -788,7 +788,7 @@
         <mxCell id="CCNBwmcOjUaOpuam04PV-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" parent="CCNBwmcOjUaOpuam04PV-4" source="CCNBwmcOjUaOpuam04PV-7" target="CCNBwmcOjUaOpuam04PV-9" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="CCNBwmcOjUaOpuam04PV-5" value="MedicalConsultation.Api" style="swimlane;html=1;startSize=20;" parent="CCNBwmcOjUaOpuam04PV-3" vertex="1">
+        <mxCell id="CCNBwmcOjUaOpuam04PV-5" value="Consultation.Api" style="swimlane;html=1;startSize=20;" parent="CCNBwmcOjUaOpuam04PV-3" vertex="1">
           <mxGeometry x="250" y="20" width="380" height="1400" as="geometry" />
         </mxCell>
         <mxCell id="CCNBwmcOjUaOpuam04PV-11" value="Faz a requisição do relatório.&lt;div&gt;api/v1/reports/{doctorId}/{startDate}/{endDate}&lt;/div&gt;" style="points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];shape=mxgraph.bpmn.task;whiteSpace=wrap;rectStyle=rounded;size=10;html=1;container=1;expand=0;collapsible=0;taskMarker=abstract;" parent="CCNBwmcOjUaOpuam04PV-5" vertex="1">
