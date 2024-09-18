@@ -4,7 +4,7 @@ namespace Application.Interfaces
 {
     public interface IConsultationHandler
     {
-        Task<ConsultationModel> AddConsultation(ConsultationModel consultation);
-        Task<IEnumerable<ConsultationModel>> GetAllConsultationsByDoctorId(string doctorId);
+        Task<ResponseModel<ConsultationModel>> AddConsultation(ConsultationModel consultation);
+        Task<ResponseModel<IList<DoctorModel>>> GetDoctorsAgendaBySpecialityAndDate(string speciality, DateTime date);
     }
 }

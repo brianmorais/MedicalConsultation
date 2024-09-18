@@ -8,12 +8,15 @@ namespace Application.Models
         public string Id { get; set; } = string.Empty;
 
         [JsonPropertyName("patientDocument")]
-        public required string PatientDocument { get; set; } = string.Empty;
-
-        [JsonPropertyName("doctorId")]
-        public required string DoctorId { get; set; } = string.Empty;
+        public string PatientDocument { get; set; } = string.Empty;
 
         [JsonPropertyName("consultationDate")]
-        public required DateTime ConsultationDate { get; set; }
+        public DateTime ConsultationDate { get; set; }
+
+        [JsonPropertyName("doctorId")]
+        public string DoctorId { get; set; } = string.Empty;
+
+        [JsonPropertyName("speciality")]
+        public string Speciality { get; set; } = string.Empty;
     }
 }

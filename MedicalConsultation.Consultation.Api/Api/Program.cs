@@ -10,7 +10,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // Setup inversion of control.
-builder.Services.Setup();
+builder.Setup();
 
 // Setup AutoMapper
 builder.Services.AddAutoMapper(
