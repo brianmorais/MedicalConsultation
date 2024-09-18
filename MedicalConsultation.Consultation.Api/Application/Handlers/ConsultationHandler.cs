@@ -59,13 +59,17 @@ namespace Application.Handlers
             var response = new ResponseModel<IList<DoctorModel>>();
             var doctors = await _doctorService.GetDoctorsBySpeciality(speciality);
 
-            if (doctors == null)
+            if (doctors == null || !doctors.Any())
             {
                 response.SetNotification("No doctors with this specialty were found.");
                 return response;
             }
 
             var doctorsModel = new List<DoctorModel>();
+            var now = DateTime.Now;
+            var lunchHour = 12;
+            var endHour = new DateTime(now.Year, now.Month, now.Day, 18, 0, 0);
+
             foreach (var doctor in doctors)
             {
                 var consultations = await _consultationRepository.GetAllConsultationsByDoctorId(doctor.Id);
@@ -77,32 +81,18 @@ namespace Application.Handlers
                 model.LastName = doctor.LastName;
                 model.Agenda = new List<AgendaModel>();
 
-                var now = DateTime.Now;
                 var currentHour = new DateTime(now.Year, now.Month, now.Day, 8, 0, 0);
-                var endHour = new DateTime(now.Year, now.Month, now.Day, 18, 0, 0);
-                var lunchHour = 12;
-
+                
                 while (currentHour < endHour)
                 {
                     if (currentHour.Hour != lunchHour)
                     {
-                        if (consultations.Any(x => x.ConsultationDate.ToString("yyyy-MM-dd HH:mm") == currentHour.ToString("yyyy-MM-dd HH:mm")))
+                        var isBusy = consultations.Any(x => x.ConsultationDate.ToString("yyyy-MM-dd HH:mm") == currentHour.ToString("yyyy-MM-dd HH:mm"));
+                        model.Agenda.Add(new AgendaModel
                         {
-                            model.Agenda.Add(new AgendaModel
-                            {
-                                DateTime = currentHour,
-                                Busy = true
-                            });
-                        }
-                        else
-                        {
-                            model.Agenda.Add(new AgendaModel
-                            {
-                                DateTime = currentHour,
-                                Busy = false
-                            });
-                        }
-
+                            DateTime = currentHour,
+                            Busy = isBusy,
+                        });
                     }
 
                     currentHour.AddMinutes(30);
