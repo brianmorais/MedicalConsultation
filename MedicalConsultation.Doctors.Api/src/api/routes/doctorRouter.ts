@@ -15,7 +15,7 @@ export class DoctorRouter {
     this.router.get(
       '/api/v1/doctors/:doctorId', 
       validateToken, 
-      validateRole('admin,doctor,patient'), 
+      validateRole('admin,system'), 
       async (request: Request, response: Response) => 
         this.doctorController.getById(request, response)
     );
@@ -23,7 +23,7 @@ export class DoctorRouter {
     this.router.get(
       '/api/v1/doctors/speciality/:speciality', 
       validateToken, 
-      validateRole('admin,doctor,patient'), 
+      validateRole('admin,system'), 
       async (request: Request, response: Response) => 
         this.doctorController.getBySpeciality(request, response)
     );
