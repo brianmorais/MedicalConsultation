@@ -60,6 +60,12 @@
 
 ---
 
-### Desenho de arquitetura com base nas regras acima:
+### Desenhos de arquitetura com base nas regras acima:
+
+#### C4:
 
 ![alt text](<resources/Sistema de gestão de consultas médicas - C4 - Container.jpg>)
+
+#### Fluxos:
+
+![alt text](<resources/Sistema de gestão de consultas médicas - Fluxo.jpg>)
