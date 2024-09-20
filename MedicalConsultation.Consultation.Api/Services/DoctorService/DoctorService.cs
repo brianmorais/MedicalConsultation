@@ -1,18 +1,47 @@
-﻿using Domain.Entities;
+﻿using AutoMapper;
+using Domain.Entities;
 using Domain.Interfaces.Services;
+using Services.Base;
+using Services.DoctorService.Response;
+using System.Text.Json;
 
 namespace Services.DoctorService
 {
     public class DoctorService : IDoctorService
     {
-        public Task<Doctor> GetDoctorById(string id)
+        private readonly HttpClient _httpClient;
+        private readonly IMapper _mapper;
+
+        public DoctorService(HttpClient httpClient, IMapper mapper)
         {
-            throw new NotImplementedException();
+            _httpClient = httpClient;
+            _mapper = mapper;
         }
 
-        public Task<IEnumerable<Doctor>> GetDoctorsBySpeciality(string speciality)
+        public async Task<Doctor?> GetDoctorById(string id)
         {
-            throw new NotImplementedException();
+            var response = await _httpClient.GetAsync($"/api/v1/doctors/{id}");
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                var doctor = JsonSerializer.Deserialize<Response<DoctorModel>>(data);
+                return _mapper.Map<Doctor>(doctor?.Data);
+            }
+
+            return null;
+        }
+
+        public async Task<IEnumerable<Doctor>?> GetDoctorsBySpeciality(string speciality)
+        {
+            var response = await _httpClient.GetAsync($"/api/v1/doctors/speciality/{speciality}");
+            if (response.IsSuccessStatusCode)
+            {
+                var data = await response.Content.ReadAsStringAsync();
+                var doctors = JsonSerializer.Deserialize<Response<IEnumerable<DoctorModel>>>(data);
+                return _mapper.Map<IEnumerable<Doctor>>(doctors?.Data);
+            }
+
+            return null;
         }
     }
 }

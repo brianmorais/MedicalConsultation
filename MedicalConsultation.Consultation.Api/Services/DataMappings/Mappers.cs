@@ -10,7 +10,7 @@ namespace Services.DataMappings
         public Mappers()
         {
             CreateMap<DoctorModel, Doctor>();
-            CreateMap<DoctorModel[], IEnumerable<DoctorModel>>();
+            CreateMap<DoctorModel[], IEnumerable<Doctor>>();
 
             CreateMap<PatientModel, Patient>();
             CreateMap<PatientModel[], IEnumerable<Patient>>();
