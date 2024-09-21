@@ -30,11 +30,21 @@ namespace Data.Repositories
 
         public async Task<IEnumerable<Consultation>> GetAllConsultationsByDoctorId(string doctorId)
         {
-            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId) & Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, DateTime.Now);
+            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId)
+                & Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, DateTime.Now);
 
-            var result = await _collection.FindAsync(filter);
-            var list = await result.ToListAsync();
-            return _mapper.Map<IEnumerable<Consultation>>(list);
+            var result = await _collection.Find(filter).ToListAsync();
+            return _mapper.Map<IEnumerable<Consultation>>(result);
+        }
+
+        public async Task<IEnumerable<Consultation>> GetConsultationsReport(string doctorId, DateTime startDate, DateTime endDate)
+        {
+            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId)
+                & Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, startDate)
+                & Builders<ConsultationDataModel>.Filter.Lte(c => c.ConsultationDate, endDate);
+
+            var result = await _collection.Find(filter).ToListAsync();
+            return _mapper.Map<IEnumerable<Consultation>>(result);
         }
     }
 }

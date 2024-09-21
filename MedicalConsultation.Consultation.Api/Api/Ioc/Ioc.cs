@@ -1,10 +1,12 @@
-﻿using Application.Handlers;
+﻿using Application.Cache;
+using Application.Handlers;
 using Application.Interfaces;
 using Data.Repositories;
 using Domain.Interfaces.Repositories;
 using Domain.Interfaces.Services;
 using Services.DoctorService;
 using Services.PatientService;
+using StackExchange.Redis;
 
 namespace Api.Ioc
 {
@@ -17,12 +19,15 @@ namespace Api.Ioc
 
             var doctorServiceUrl = configuration["Services:DoctorUrl"] ?? string.Empty;
             var patientServiceUrl = configuration["Services:PatientUrl"] ?? string.Empty;
+            var redisConnection = configuration["Redis:ConnectionString"] ?? string.Empty;
 
             services.AddScoped<TokenValidator.Services.IAuthenticationService, TokenValidator.Services.AuthenticationService>();
             services.AddScoped<IConsultationHandler, ConsultationHandler>();
             services.AddScoped<IConsultationRepository, ConsultationRepository>();
             services.AddHttpClient<IDoctorService, DoctorService>(options => options.BaseAddress = new Uri(doctorServiceUrl));
             services.AddHttpClient<IPatientService, PatientService>(options => options.BaseAddress = new Uri(patientServiceUrl));
+            services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnection));
+            services.AddScoped<IRedisCache, RedisCache>();
         }
     }
 }

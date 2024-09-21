@@ -22,26 +22,44 @@ namespace Api.Controllers
         [Authorization("admin", "patient", "doctor")]
         public async Task<ActionResult<ResponseModel<IEnumerable<DoctorModel>>>> GetDoctorsAgendaBySpecialityAndDate(string speciality, DateTime dateTime)
         {
-            var agendas = await _consultationHandler.GetDoctorsAgendaBySpecialityAndDate(speciality, dateTime);
-            if (agendas.Notifications.Any())
+            try
             {
-                return BadRequest(agendas);
-            }
+                var agendas = await _consultationHandler.GetDoctorsAgendaBySpecialityAndDate(speciality, dateTime);
+                if (agendas.Notifications.Any())
+                {
+                    return BadRequest(agendas);
+                }
 
-            return Ok(agendas);
+                return Ok(agendas);
+            }
+            catch (Exception ex)
+            {
+                var response = new ResponseModel<IEnumerable<DoctorModel>>();
+                response.SetNotification(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
 
         [HttpPost]
         [Authorization("admin", "patient")]
         public async Task<ActionResult<ResponseModel<ConsultationModel>>> AddConsultation(ConsultationModel consultation)
         {
-            var response = await _consultationHandler.AddConsultation(consultation);
-            if (response.Notifications.Any())
+            try
             {
-                return BadRequest(response);
-            }
+                var response = await _consultationHandler.AddConsultation(consultation);
+                if (response.Notifications.Any())
+                {
+                    return BadRequest(response);
+                }
 
-            return Ok(response);
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                var response = new ResponseModel<ConsultationModel>();
+                response.SetNotification(ex.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, response);
+            }
         }
     }
 }
