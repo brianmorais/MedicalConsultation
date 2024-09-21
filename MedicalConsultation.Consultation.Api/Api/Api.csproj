@@ -18,4 +18,10 @@
     <ProjectReference Include="..\Services\Services.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="TokenValidator">
+      <HintPath>..\..\MedicalConsultation.Shared\nuget\TokenValidator\TokenValidator\bin\Debug\net8.0\TokenValidator.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,7 @@
 using Application.Interfaces;
 using Application.Models;
 using Microsoft.AspNetCore.Mvc;
+using TokenValidator.Attributes;
 
 namespace Api.Controllers
 {
@@ -18,6 +19,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{speciality}/{dateTime}")]
+        [Authorization("admin", "patient", "doctor")]
         public async Task<ActionResult<ResponseModel<IEnumerable<DoctorModel>>>> GetDoctorsAgendaBySpecialityAndDate(string speciality, DateTime dateTime)
         {
             var agendas = await _consultationHandler.GetDoctorsAgendaBySpecialityAndDate(speciality, dateTime);
@@ -30,6 +32,7 @@ namespace Api.Controllers
         }
 
         [HttpPost]
+        [Authorization("admin", "patient")]
         public async Task<ActionResult<ResponseModel<ConsultationModel>>> AddConsultation(ConsultationModel consultation)
         {
             var response = await _consultationHandler.AddConsultation(consultation);

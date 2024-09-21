@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using TokenValidator.Attributes;
 
 namespace Api.Controllers
 {
@@ -14,6 +15,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{doctorId}/{startDate}/{endDate}")]
+        [Authorization("admin, doctor")]
         public IActionResult GenerateReport(string doctorId, DateTime startDate, DateTime endDate)
         {
             return Ok();

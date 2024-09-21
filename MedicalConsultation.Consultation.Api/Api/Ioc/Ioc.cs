@@ -18,6 +18,7 @@ namespace Api.Ioc
             var doctorServiceUrl = configuration["Services:DoctorUrl"] ?? string.Empty;
             var patientServiceUrl = configuration["Services:PatientUrl"] ?? string.Empty;
 
+            services.AddScoped<TokenValidator.Services.IAuthenticationService, TokenValidator.Services.AuthenticationService>();
             services.AddScoped<IConsultationHandler, ConsultationHandler>();
             services.AddScoped<IConsultationRepository, ConsultationRepository>();
             services.AddHttpClient<IDoctorService, DoctorService>(options => options.BaseAddress = new Uri(doctorServiceUrl));

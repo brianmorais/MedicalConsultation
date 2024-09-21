@@ -9,10 +9,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Setup inversion of control.
+builder.Services.Configure<TokenValidator.Models.Services>(
+    builder.Configuration.GetSection("Services")
+);
+
 builder.Setup();
 
-// Setup AutoMapper
 builder.Services.AddAutoMapper(
     typeof(Application.DataMappings.Mappers), 
     typeof(Services.DataMappings.Mappers),

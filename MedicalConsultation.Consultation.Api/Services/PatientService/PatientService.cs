@@ -1,18 +1,20 @@
 ﻿using AutoMapper;
 using Domain.Entities;
 using Domain.Interfaces.Services;
+using Microsoft.Extensions.Configuration;
 using Services.Base;
 using Services.PatientService.Response;
 using System.Text.Json;
 
 namespace Services.PatientService
 {
-    public class PatientService : IPatientService
+    public class PatientService : ServiceBase, IPatientService
     {
         private readonly HttpClient _httpClient;
         private readonly IMapper _mapper;
 
-        public PatientService(HttpClient httpClient, IMapper mapper)
+        public PatientService(HttpClient httpClient, IMapper mapper, IConfiguration configuration)
+            : base(configuration)
         {
             _httpClient = httpClient;
             _mapper = mapper;
@@ -20,6 +22,7 @@ namespace Services.PatientService
 
         public async Task<Patient?> GetPatientByDocumentNumber(string documentNumber)
         {
+            _httpClient.DefaultRequestHeaders.Add("Authorization", $"basic {_token}");
             var response = await _httpClient.GetAsync($"/api/v1/patients/{documentNumber}");
             if (response.IsSuccessStatusCode)
             {
