@@ -15,7 +15,8 @@ builder.Setup();
 // Setup AutoMapper
 builder.Services.AddAutoMapper(
     typeof(Application.DataMappings.Mappers), 
-    typeof(Services.DataMappings.Mappers)
+    typeof(Services.DataMappings.Mappers),
+    typeof(Data.DataMappings.Mappers)
 );
 
 var app = builder.Build();

@@ -6,6 +6,6 @@
         public required string PatientDocument { get; set; } = string.Empty;
         public required string DoctorId { get; set; } = string.Empty;
         public required DateTime ConsultationDate { get; set; }
-        public required string Speciality { get; set; }
+        public required string Speciality { get; set; } = string.Empty;
     }
 }
