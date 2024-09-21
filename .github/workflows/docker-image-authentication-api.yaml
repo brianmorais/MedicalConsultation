@@ -27,7 +27,8 @@ jobs:
       uses: docker/build-push-action@v5.1.0
       with:
         push: true
-        context: '../../MedicalConsultation.Authentication.Api/Dockerfile'
+        context: 'MedicalConsultation.Authentication.Api'
+        file: 'MedicalConsultation.Authentication.Api/Dockerfile'
         tags: |
           brianmorais/projetoexemploaspnet:v${{ github.run_number }}
           brianmorais/projetoexemploaspnet:latest
