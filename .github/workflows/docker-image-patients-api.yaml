@@ -27,6 +27,7 @@ jobs:
       uses: docker/build-push-action@v5.1.0
       with:
         push: true
+        context: '.'
         file: 'MedicalConsultation.Patients.Api/Dockerfile'
         tags: |
           brianmorais/medical-consultation-patients-api:v${{ github.run_number }}
