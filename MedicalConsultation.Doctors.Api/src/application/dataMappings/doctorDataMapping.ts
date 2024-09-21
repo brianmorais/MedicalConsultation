@@ -23,4 +23,8 @@ export class DoctorDataMapping {
     entity.speciality = model.speciality;
     return entity;
   }
+
+  static FromEntityArrayToModelArray(entitys: Doctor[]): DoctorModel[] {
+    return entitys.map(d => this.FromEntityToModel(d));
+  }
 }

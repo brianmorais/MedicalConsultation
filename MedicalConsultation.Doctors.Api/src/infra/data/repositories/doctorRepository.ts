@@ -37,18 +37,20 @@ export class DoctorRepository implements IDoctorRepository {
     return doctor;
   }
 
-  async getBySpeciality(speciality: string): Promise<Doctor | null> {
+  async getBySpeciality(speciality: string): Promise<Doctor[] | null> {
     this.databaseConnection.Connect();
-    const model = await DoctorDatabaseModel.findOne({ speciality });
-    if (model) {
-      const doctor = new Doctor();
-      doctor.id = model._id.toString();
-      doctor.firstName = model.firstName;
-      doctor.lastName = model.lastName;
-      doctor.email = model.email;
-      doctor.phoneNumber = model.phoneNumber;
-      doctor.speciality = model.speciality;
-      return doctor;
+    const models = await DoctorDatabaseModel.find({ speciality: { $in: speciality } });
+    if (models) {
+      return models.map(d => {
+        const doctor = new Doctor();
+        doctor.id = d.id,
+        doctor.firstName = d.firstName,
+        doctor.lastName = d.lastName,
+        doctor.email = d.email,
+        doctor.phoneNumber = d.phoneNumber,
+        doctor.speciality = d.speciality
+        return doctor;
+      });
     }
     return null;
   }

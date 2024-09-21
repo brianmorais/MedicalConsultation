@@ -20,12 +20,12 @@ namespace TokenValidator.Services
                 var content = JsonSerializer.Serialize(new ValidateTokenRequest(token));
                 var body = new StringContent(content, Encoding.UTF8, "application/json");
 
-                var response = await httpClient.PostAsync(_settings.AuthUrl, body);
+                var response = await httpClient.PostAsync($"{_settings.AuthUrl}/api/v1/auth/validate", body);
                 if (response.IsSuccessStatusCode)
                 {
                     var responseBody = await response.Content.ReadAsStringAsync();
-                    var tokenContent = JsonSerializer.Deserialize<UserClaims>(responseBody);
-                    return tokenContent;
+                    var tokenContent = JsonSerializer.Deserialize<Response>(responseBody);
+                    return tokenContent?.Data;
                 }
 
                 return null;

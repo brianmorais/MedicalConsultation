@@ -30,9 +30,7 @@ namespace Data.Repositories
 
         public async Task<IEnumerable<Consultation>> GetAllConsultationsByDoctorId(string doctorId)
         {
-            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId) 
-                & (Builders<ConsultationDataModel>.Filter.Eq(c => c.ConsultationDate.Date, DateTime.Now.Date)
-                | Builders<ConsultationDataModel>.Filter.Gt(c => c.ConsultationDate.Date, DateTime.Now.Date));
+            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId) & Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, DateTime.Now);
 
             var result = await _collection.FindAsync(filter);
             var list = await result.ToListAsync();

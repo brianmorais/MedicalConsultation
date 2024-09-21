@@ -66,28 +66,29 @@ namespace Application.Handlers
             }
 
             var doctorsModel = new List<DoctorModel>();
-            var now = DateTime.Now;
             var lunchHour = 12;
-            var endHour = new DateTime(now.Year, now.Month, now.Day, 18, 0, 0);
+            var endHour = new DateTime(date.Year, date.Month, date.Day, 18, 0, 0);
 
             foreach (var doctor in doctors)
             {
                 var consultations = await _consultationRepository.GetAllConsultationsByDoctorId(doctor.Id);
+                var selectedDayConsultations = consultations.Where(c => c.ConsultationDate.Date == date.Date).ToList();
 
                 var model = new DoctorModel();
                 model.Id = doctor.Id;
                 model.Speciality = speciality;
                 model.FirstName = doctor.FirstName;
                 model.LastName = doctor.LastName;
+                model.SelectedDay = date;
                 model.Agenda = new List<AgendaModel>();
 
-                var currentHour = new DateTime(now.Year, now.Month, now.Day, 8, 0, 0);
+                var currentHour = new DateTime(date.Year, date.Month, date.Day, 8, 0, 0);
                 
                 while (currentHour < endHour)
                 {
                     if (currentHour.Hour != lunchHour)
                     {
-                        var isBusy = consultations.Any(x => x.ConsultationDate.ToString("yyyy-MM-dd HH:mm") == currentHour.ToString("yyyy-MM-dd HH:mm"));
+                        var isBusy = selectedDayConsultations.Any(x => x.ConsultationDate.ToLocalTime().ToString("yyyy-MM-dd HH:mm") == currentHour.ToString("yyyy-MM-dd HH:mm"));
                         model.Agenda.Add(new AgendaModel
                         {
                             DateTime = currentHour,
@@ -95,7 +96,7 @@ namespace Application.Handlers
                         });
                     }
 
-                    currentHour.AddMinutes(30);
+                    currentHour = currentHour.AddMinutes(30);
                 }
 
                 doctorsModel.Add(model);

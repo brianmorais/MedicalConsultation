@@ -59,12 +59,12 @@ export class DoctorUseCase implements IDoctorUseCase {
   
   async getBySpeciality(speciality: string): Promise<ResponseModel> {
     this.logger.info(`[DoctorUseCase][getBySpeciality] - Start the get doctor by speciality: ${speciality}`);
-    const doctor = await this.doctorRepository.getBySpeciality(speciality);
-    if (!doctor) {
-      return new ResponseModel({}, ['Doctor not found']);
+    const doctors = await this.doctorRepository.getBySpeciality(speciality);
+    if (!doctors) {
+      return new ResponseModel([], ['Doctor not found']);
     }
 
-    const doctorModel = DoctorDataMapping.FromEntityToModel(doctor);
+    const doctorModel = DoctorDataMapping.FromEntityArrayToModelArray(doctors);
     return new ResponseModel(doctorModel);
   }
 

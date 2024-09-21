@@ -16,6 +16,9 @@ namespace Application.Models
         [JsonPropertyName("speciality")]
         public string Speciality { get; set; } = string.Empty;
 
+        [JsonPropertyName("selectedDay")]
+        public DateTime SelectedDay { get; set; }
+
         [JsonPropertyName("agenda")]
         public IList<AgendaModel> Agenda { get; set; } = new List<AgendaModel>();
     }
