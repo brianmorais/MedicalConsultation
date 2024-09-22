@@ -5,7 +5,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <PackageId>TokenValidator</PackageId>
+    <PackageId>MedicalConsultation.Token</PackageId>
+    <Version>1.0.0</Version>
+    <Authors>brianmorais</Authors>
+    <Description>Library for validating roles for a personal project</Description>
   </PropertyGroup>
 
   <ItemGroup>

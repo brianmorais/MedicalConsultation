@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace TokenValidator.Attributes
+namespace MedicalConsultation.Token.Attributes
 {
     public class AuthorizationAttribute : ActionFilterAttribute
     {

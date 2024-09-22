@@ -21,7 +21,7 @@ namespace Api.Ioc
             var patientServiceUrl = configuration["Services:PatientUrl"] ?? string.Empty;
             var redisConnection = configuration["Redis:ConnectionString"] ?? string.Empty;
 
-            services.AddScoped<TokenValidator.Services.IAuthenticationService, TokenValidator.Services.AuthenticationService>();
+            services.AddScoped<MedicalConsultation.Token.Services.IAuthenticationService, MedicalConsultation.Token.Services.AuthenticationService>();
             services.AddScoped<IConsultationHandler, ConsultationHandler>();
             services.AddScoped<IConsultationRepository, ConsultationRepository>();
             services.AddHttpClient<IDoctorService, DoctorService>(options => options.BaseAddress = new Uri(doctorServiceUrl));

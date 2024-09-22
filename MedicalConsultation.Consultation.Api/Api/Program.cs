@@ -9,7 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.Configure<TokenValidator.Models.Services>(
+builder.Services.Configure<MedicalConsultation.Token.Models.Services>(
     builder.Configuration.GetSection("Services")
 );
 

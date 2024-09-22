@@ -1,7 +1,7 @@
 ﻿using Application.Interfaces;
 using Application.Models;
+using MedicalConsultation.Token.Attributes;
 using Microsoft.AspNetCore.Mvc;
-using TokenValidator.Attributes;
 
 namespace Api.Controllers
 {

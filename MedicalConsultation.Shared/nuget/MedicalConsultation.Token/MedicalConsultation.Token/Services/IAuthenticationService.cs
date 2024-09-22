@@ -1,6 +1,6 @@
-﻿using TokenValidator.Models;
+﻿using MedicalConsultation.Token.Models;
 
-namespace TokenValidator.Services
+namespace MedicalConsultation.Token.Services
 {
     public interface IAuthenticationService
     {

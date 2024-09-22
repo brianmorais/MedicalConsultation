@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Options;
 using System.Text;
 using System.Text.Json;
-using TokenValidator.Models;
+using MedicalConsultation.Token.Models;
 
-namespace TokenValidator.Services
+namespace MedicalConsultation.Token.Services
 {
     public class AuthenticationService : IAuthenticationService
     {

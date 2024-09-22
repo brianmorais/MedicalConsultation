@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace TokenValidator.Models
+namespace MedicalConsultation.Token.Models
 {
     public class ValidateTokenRequest
     {
