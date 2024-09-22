@@ -16,6 +16,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{BC7F3AA5-A600-4AAD-8964-DCC9797B5A9D}"
 	ProjectSection(SolutionItems) = preProject
 		Dockerfile = Dockerfile
+		k8s.yaml = k8s.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{110AEFE9-B45B-418E-815E-D27E74F02B32}"
