@@ -34,4 +34,12 @@ export class DoctorMocks {
     entity.speciality = 'pediatra';
     return entity;
   }
+
+  static GetDoctorModelArray() {
+    return [this.GetDoctorModel()]
+  }
+
+  static GetDoctorEntityArray() {
+    return [this.GetDoctorEntity()]
+  }
 }

@@ -44,7 +44,7 @@ describe('Doctors use case tests', () => {
   });
 
   test('should get doctor by speciality', async () => {
-    const expectedValue = new ResponseModel(DoctorMocks.GetDoctorModel());
+    const expectedValue = new ResponseModel(DoctorMocks.GetDoctorModelArray());
     const speciality = 'ortopedista';
     const useCase = new DoctorUseCase(new DoctorMockRepository(), new LoggerMock());
 
