@@ -3,6 +3,17 @@ kind: Namespace
 metadata:
   name: medical-consultation
 ---
+apiVersion: v1
+kind: Service
+metadata:
+  name: authentication-svc
+spec:
+  selector:
+    app: authentication
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
