@@ -3,13 +3,16 @@ import { IPatientRepository } from "../../domain/interfaces/infra/repositories/p
 import { PatientMocks } from "./patientMocks";
 
 export class PatientMockRepository implements IPatientRepository {
-  async getByDocument(document: string): Promise<Patient> {
+  getReportData(patientDocuments: string[]): Promise<Patient[] | null> {
+    throw new Error("Method not implemented.");
+  }
+  async getByDocument(document: string): Promise<Patient | null> {
     return await PatientMocks.GetPatientEntity();
   }
-  async addPatient(patient: Patient): Promise<Patient> {
+  async addPatient(patient: Patient): Promise<Patient | null> {
     return await PatientMocks.GetPatientEntity();
   }
-  async updatePatient(patient: Patient): Promise<Patient> {
+  async updatePatient(patient: Patient): Promise<Patient | null> {
     return await PatientMocks.GetUpdatedEntityPatient();
   }
 }
