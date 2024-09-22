@@ -23,6 +23,9 @@ jobs:
         username: 'brianmorais'
         password: ${{ secrets.MEDICAL_CONSULTATION_DOCKER }}
 
+    - name: Set Build Date
+      run: echo "BUILD_DATE=$(date +'%Y%m%d%H%M')" >> $GITHUB_ENV
+
     - name: Build and push Docker images
       uses: docker/build-push-action@v5.1.0
       with:
@@ -30,5 +33,5 @@ jobs:
         context: 'MedicalConsultation.Patients.Api'
         file: 'MedicalConsultation.Patients.Api/Dockerfile'
         tags: |
-          brianmorais/medical-consultation-patients-api:v${{ github.run_number }}
+          brianmorais/medical-consultation-patients-api:v${{ env.BUILD_DATE }}
           brianmorais/medical-consultation-patients-api:latest
