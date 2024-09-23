@@ -1,67 +1,70 @@
 ﻿using Application.Models;
+using Bogus;
 using Domain.Entities;
 
 namespace Tests.Mocks
 {
     public class ConsultationMock
     {
-        public static ConsultationModel GetConsultationMock()
+        private readonly Faker _faker = new Faker();
+
+        public ConsultationModel GetConsultationMock()
         {
             return new ConsultationModel
             {
-                Id = "id",
-                DoctorId = "doctorId",
-                PatientDocument = "patientDocument",
-                Speciality = "speciality",
+                Id = _faker.Random.AlphaNumeric(10),
+                DoctorId = _faker.Random.AlphaNumeric(10),
+                PatientDocument = _faker.Random.Int(11).ToString(),
+                Speciality = _faker.Name.JobTitle(),
                 ConsultationDate = DateTime.Now.AddDays(30),
             };
         }
 
-        public static IEnumerable<Consultation> GetConsultationsListMock()
+        public IEnumerable<Consultation> GetConsultationsListMock()
         {
             return new List<Consultation>
             {
                 new Consultation
                 {
-                    Id = "id",
-                    DoctorId = "doctorId",
-                    PatientDocument = "patientDocument",
-                    Speciality = "speciality",
+                    Id = _faker.Random.AlphaNumeric(10),
+                    DoctorId = _faker.Random.AlphaNumeric(10),
+                    PatientDocument = _faker.Random.Int(11).ToString(),
+                    Speciality = _faker.Name.JobTitle(),
                     ConsultationDate = DateTime.Now
                 },
                 new Consultation
                 {
-                    Id = "id 2",
-                    DoctorId = "doctorId 2",
-                    PatientDocument = "patientDocument 2",
-                    Speciality = "speciality 2",
+                    Id = _faker.Random.AlphaNumeric(10),
+                    DoctorId = _faker.Random.AlphaNumeric(10),
+                    PatientDocument = _faker.Random.Int(11).ToString(),
+                    Speciality = _faker.Name.JobTitle(),
                     ConsultationDate = DateTime.Now
                 },
             };
         }
 
-        public static Patient GetPatientMock()
+        public Patient GetPatientMock()
         {
             return new Patient
             {
-                Id = "id",
-                FirstName = "firstName",
-                LastName = "lastName",
-                Document = "document",
-                PhoneNumber = "phoneNumber",
-                Email = "email"
+                Id = _faker.Random.AlphaNumeric(10),
+                FirstName = _faker.Person.FirstName,
+                LastName = _faker.Person.LastName,
+                Document = _faker.Random.Int(11).ToString(),
+                PhoneNumber = _faker.Person.Phone,
+                Email = _faker.Person.Email
             };
         }
 
-        public static Consultation GetConsultation()
+        public Consultation GetConsultation(ConsultationModel consultation)
         {
             return new Consultation
             {
-                Id = "id",
-                DoctorId = "doctorId",
-                PatientDocument = "patientDocument",
-                Speciality = "speciality",
-                ConsultationDate = DateTime.Now.AddDays(30)
+                Id = consultation.Id,
+                DoctorId = consultation.DoctorId,
+                PatientDocument = consultation.PatientDocument,
+                Speciality = consultation.Speciality,
+                ConsultationDate = consultation.ConsultationDate
             };
         }
     }
