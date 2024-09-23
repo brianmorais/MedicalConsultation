@@ -24,9 +24,11 @@ namespace Api.Controllers
         {
             try
             {
+                _logger.LogInformation($"[ReportController][GenerateReport] - Start report generation - DoctorId: {doctorId}, StartDate: {startDate}, EndDate: {endDate}");
                 var report = await _reportHandler.GetReport(doctorId, startDate, endDate);
                 if (report.Notifications.Any())
                 {
+                    _logger.LogWarning($"[ReportController][GenerateReport] - {string.Join(", ", report.Notifications)}");
                     return BadRequest(report);
                 }
 
@@ -36,6 +38,7 @@ namespace Api.Controllers
             {
                 var response = new ResponseModel<ReportModel>();
                 response.SetNotification(ex.Message);
+                _logger.LogError($"[ReportController][GenerateReport] - {string.Join(", ", response.Notifications)}");
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }

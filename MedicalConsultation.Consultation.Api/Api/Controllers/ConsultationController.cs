@@ -24,9 +24,11 @@ namespace Api.Controllers
         {
             try
             {
+                _logger.LogInformation($"[ConsultationController][GetDoctorsAgendaBySpecializationAndDate] - Start get agendas - Speciality: {speciality}, DateTime: {dateTime}");
                 var agendas = await _consultationHandler.GetDoctorsAgendaBySpecialityAndDate(speciality, dateTime);
                 if (agendas.Notifications.Any())
                 {
+                    _logger.LogWarning($"[ConsultationController][GetDoctorsAgendaBySpecializationAndDate] - {string.Join(", ", agendas.Notifications)}");
                     return BadRequest(agendas);
                 }
 
@@ -36,6 +38,7 @@ namespace Api.Controllers
             {
                 var response = new ResponseModel<IEnumerable<DoctorModel>>();
                 response.SetNotification(ex.Message);
+                _logger.LogError($"[ConsultationController][GetDoctorsAgendaBySpecializationAndDate] - {string.Join(", ", response.Notifications)}");
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
@@ -46,9 +49,11 @@ namespace Api.Controllers
         {
             try
             {
+                _logger.LogInformation($"[ConsultationController][AddConsultation] - Start consultation schedule.");
                 var response = await _consultationHandler.AddConsultation(consultation);
                 if (response.Notifications.Any())
                 {
+                    _logger.LogWarning($"[ConsultationController][AddConsultation] - {string.Join(", ", response.Notifications)}");
                     return BadRequest(response);
                 }
 
@@ -58,6 +63,7 @@ namespace Api.Controllers
             {
                 var response = new ResponseModel<ConsultationModel>();
                 response.SetNotification(ex.Message);
+                _logger.LogError($"[ConsultationController][AddConsultation] - {string.Join(", ", response.Notifications)}");
                 return StatusCode(StatusCodes.Status500InternalServerError, response);
             }
         }
