@@ -39,9 +39,11 @@ namespace Data.Repositories
 
         public async Task<IEnumerable<Consultation>> GetConsultationsReport(string doctorId, DateTime startDate, DateTime endDate)
         {
-            var filter = Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId)
-                & Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, startDate)
-                & Builders<ConsultationDataModel>.Filter.Lte(c => c.ConsultationDate, endDate);
+            var filter = Builders<ConsultationDataModel>.Filter.And(
+                Builders<ConsultationDataModel>.Filter.Eq(c => c.DoctorId, doctorId),
+                Builders<ConsultationDataModel>.Filter.Gte(c => c.ConsultationDate, startDate.Date),
+                Builders<ConsultationDataModel>.Filter.Lte(c => c.ConsultationDate, endDate.Date.AddTicks(-1))
+            );
 
             var result = await _collection.Find(filter).ToListAsync();
             return _mapper.Map<IEnumerable<Consultation>>(result);

@@ -41,13 +41,13 @@ namespace Services.PatientService
             var content = JsonSerializer.Serialize(documentNumber);
             var body = new StringContent(content, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync($"/api/v1/patients/get-report/{documentNumber}", body);
+            var response = await _httpClient.PostAsync($"/api/v1/patients/get-report", body);
 
             if (response.IsSuccessStatusCode)
             {
                 var responseBody = await response.Content.ReadAsStringAsync();
-                var patients = JsonSerializer.Deserialize<IEnumerable<PatientModel>>(responseBody);
-                return _mapper.Map<IEnumerable<Patient>>(patients);
+                var patients = JsonSerializer.Deserialize<Response<IEnumerable<PatientModel>>>(responseBody);
+                return _mapper.Map<IEnumerable<Patient>>(patients?.Data);
             }
 
             return null;

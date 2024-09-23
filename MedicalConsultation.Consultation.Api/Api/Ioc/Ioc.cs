@@ -23,6 +23,7 @@ namespace Api.Ioc
 
             services.AddScoped<MedicalConsultation.Token.Services.IAuthenticationService, MedicalConsultation.Token.Services.AuthenticationService>();
             services.AddScoped<IConsultationHandler, ConsultationHandler>();
+            services.AddScoped<IReportHandler, ReportHandler>();
             services.AddScoped<IConsultationRepository, ConsultationRepository>();
             services.AddHttpClient<IDoctorService, DoctorService>(options => options.BaseAddress = new Uri(doctorServiceUrl));
             services.AddHttpClient<IPatientService, PatientService>(options => options.BaseAddress = new Uri(patientServiceUrl));

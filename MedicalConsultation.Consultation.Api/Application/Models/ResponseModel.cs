@@ -21,7 +21,7 @@ namespace Application.Models
         }
 
         [JsonPropertyName("data")]
-        public TResponse? Data { get; private set; }
+        public TResponse? Data { get; set; }
 
         [JsonPropertyName("notifications")]
         public IList<string> Notifications { get; private set; }
