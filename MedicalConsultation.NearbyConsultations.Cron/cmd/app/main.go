@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/brianmorais/MedicalConsultation.NearbyConsultations.Cron/internal/adapters/services"
-	usecases "github.com/brianmorais/MedicalConsultation.NearbyConsultations.Cron/internal/application/useCases"
+	usecases "github.com/brianmorais/MedicalConsultation.NearbyConsultations.Cron/internal/application/usecases"
 )
 
 func main() {
