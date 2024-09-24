@@ -95,7 +95,7 @@ spec:
               name: auth-secret
               key: basic-password
         - name: Redis__ConnectionString
-          value: redis-svc
+          value: consultation-redis-svc
         - name: Services__DoctorUrl
           value: 'http://doctor-svc'
         - name: Services__PatientUrl
