@@ -1,0 +1,514 @@
+{
+	"info": {
+		"_postman_id": "1cd12187-7f67-4ed2-adc7-98aa17dd304c",
+		"name": "MedicalConsultation",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9829876"
+	},
+	"item": [
+		{
+			"name": "Consultation",
+			"item": [
+				{
+					"name": "Get Report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{consultationUrl}}/api/v1/reports/66e37753a6beddd5679b4caf/2024-09-30/2024-10-01",
+							"host": [
+								"{{consultationUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"reports",
+								"66e37753a6beddd5679b4caf",
+								"2024-09-30",
+								"2024-10-01"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get agendas",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{consultationUrl}}/api/v1/consultations/ortopedista/2024-09-30",
+							"host": [
+								"{{consultationUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"consultations",
+								"ortopedista",
+								"2024-09-30"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add consultation",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"patientDocument\": \"12345678912\",\r\n    \"consultationDate\": \"2024-09-30T09:00\",\r\n    \"doctorId\": \"66e37753a6beddd5679b4caf\",\r\n    \"specialit\": \"ortopedista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{consultationUrl}}/api/v1/consultations",
+							"host": [
+								"{{consultationUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"consultations"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctors",
+			"item": [
+				{
+					"name": "Get doctors by speciality",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{doctorsUrl}}/api/v1/doctors/speciality/ortopedista",
+							"host": [
+								"{{doctorsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"doctors",
+								"speciality",
+								"ortopedista"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get doctor by id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{doctorsUrl}}/api/v1/doctors/66e37753a6beddd5679b4caf",
+							"host": [
+								"{{doctorsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"doctors",
+								"66e37753a6beddd5679b4caf"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Fulano\",\r\n    \"lastName\": \"de Tal\",\r\n    \"phoneNumber\": \"99 99999-9999\",\r\n    \"email\": \"fulano.de.tal@gmail.com\",\r\n    \"speciality\": \"ortopedista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{doctorsUrl}}/api/v1/doctors",
+							"host": [
+								"{{doctorsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update doctor",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"66e2f1d67a47d16414dc666f\",\r\n    \"firstName\": \"Ciclano\",\r\n    \"lastName\": \"de Tal\",\r\n    \"phoneNumber\": \"99 99999-9999\",\r\n    \"email\": \"ciclano.de.tal@gmail.com\",\r\n    \"speciality\": \"ortopedista\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{doctorsUrl}}/api/v1/doctors",
+							"host": [
+								"{{doctorsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authorization",
+			"item": [
+				{
+					"name": "Get token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Login is ok\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set('token', jsonData.data.token);\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"packages": {},
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    //\"user\": \"fulano.de.tal@gmail.com\",\r\n    //\"user\": \"ciclano.de.tal@gmail.com\",\r\n    \"user\": \"admin@gmail.com\",\r\n    \"password\": \"xpto123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authorizationUrl}}/api/v1/auth",
+							"host": [
+								"{{authorizationUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Validate token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"token\": \"bearer {{token}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authorizationUrl}}/api/v1/auth/validate",
+							"host": [
+								"{{authorizationUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"auth",
+								"validate"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patients",
+			"item": [
+				{
+					"name": "Get patient by document",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{patientsUrl}}/api/v1/patients/12345678912",
+							"host": [
+								"{{patientsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"12345678912"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get patients report",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "[\r\n    \"12345678912\",\r\n    \"12345678930\"\r\n]",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{patientsUrl}}/api/v1/patients/get-report",
+							"host": [
+								"{{patientsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patients",
+								"get-report"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"Novo\",\r\n    \"lastName\": \"de Tal\",\r\n    \"phoneNumber\": \"99 99999-9999\",\r\n    \"email\": \"novo.de.tal@gmail.com\",\r\n    \"document\": \"12345678930\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{patientsUrl}}/api/v1/patients",
+							"host": [
+								"{{patientsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update patient",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"66e6d57de37d25652cccefa4\",\r\n    \"firstName\": \"Ciclano\",\r\n    \"lastName\": \"Editado\",\r\n    \"phoneNumber\": \"99 99999-9999\",\r\n    \"email\": \"ciclano.de.tal@gmail.com\",\r\n    \"document\": \"12345678912\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{patientsUrl}}/api/v1/patients",
+							"host": [
+								"{{patientsUrl}}"
+							],
+							"path": [
+								"api",
+								"v1",
+								"patients"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
