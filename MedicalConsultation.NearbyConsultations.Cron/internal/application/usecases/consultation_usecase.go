@@ -33,7 +33,7 @@ func (c *ConsultationUseCase) GetAndSendDailyConsultations() error {
 			wg.Add(1)
 			go func(value entities.ConsultationModel) {
 				defer wg.Done()
-				c.ConsultationQueue.SendDailyConsultationToQueue(&v)
+				c.ConsultationQueue.SendDailyConsultationToQueue(&value)
 			}(v)
 		}
 		wg.Wait()
