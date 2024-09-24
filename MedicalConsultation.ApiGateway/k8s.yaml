@@ -1,0 +1,47 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: medical-consultation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: apigateway-svc
+  namespace: medical-consultation
+spec:
+  selector:
+    app: apigateway
+  ports:
+  - port: 8080
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apigateway
+  namespace: medical-consultation
+spec:
+  selector:
+    matchLabels:
+      app: apigateway
+  template:
+    metadata:
+      labels:
+        app: apigateway
+    spec:
+      restartPolicy: Always
+      containers:
+      - name: apigateway
+        image: brianmorais/medical-consultation-api-gateway:latest
+        resources:
+          requests:
+            cpu: 100m
+            memory: 100Mi
+          limits:
+            cpu: 100m
+            memory: 100Mi
+        env:
+        - name: ASPNETCORE_ENVIRONMENT
+          value: 'k8s'
+        ports:
+        - containerPort: 8080

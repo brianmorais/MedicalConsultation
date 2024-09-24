@@ -6,11 +6,11 @@ metadata:
 apiVersion: v1
 kind: Service
 metadata:
-  name: authentication-api-svc
+  name: doctors-api-svc
   namespace: medical-consultation
 spec:
   selector:
-    app: authentication-api
+    app: doctors-api
   ports:
   - port: 3000
     targetPort: 3000
@@ -18,14 +18,14 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authentication-api
+  name: doctors-api
   namespace: medical-consultation
   labels:
-    app: authentication-api
+    app: doctors-api
 spec:
   selector:
     matchLabels:
-      app: authentication-api
+      app: doctors-api
   replicas: 1
   strategy:
     rollingUpdate:
@@ -35,12 +35,12 @@ spec:
   template:
     metadata:
       labels:
-        app: authentication-api
+        app: doctors-api
     spec:
       restartPolicy: Always
       containers:
-      - name: authentication-api
-        image: brianmorais/medical-consultation-authentication-api:latest
+      - name: doctors-api
+        image: brianmorais/medical-consultation-doctors-api:latest
         resources:
           requests:
             cpu: 100m
@@ -55,23 +55,8 @@ spec:
           valueFrom:
             secretKeyRef:
               name: databases-secret
-              key: authentication
-        - name: JWT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: auth-secret
-              key: token-secret
-        - name: JWT_EXPIRES_IN
-          value: '60M'
-        - name: BASIC_USERNAME
-          valueFrom:
-            secretKeyRef:
-              name: auth-secret
-              key: basic-username
-        - name: BASIC_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: auth-secret
-              key: basic-password
+              key: doctors
+        - name: AUTH_URL
+          value: 'http://authentication-svc'
         ports:
         - containerPort: 3000

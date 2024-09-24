@@ -37,7 +37,7 @@ export class AuthUseCase implements IAuthUseCase {
   }
 
   async login(user: string, password: string): Promise<ResponseModel> {
-    this.logger.info(`[DoctorUseCase][getById] - Start the login user: ${user}`);
+    this.logger.info(`[AuthUseCase][login] - Start the login user: ${user}`);
     const notifications = AuthValidator.validateLogin(user, password);
     if (notifications.length > 0) {
       return new ResponseModel({}, notifications);
