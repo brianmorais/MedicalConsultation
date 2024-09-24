@@ -12,8 +12,8 @@ spec:
   selector:
     app: doctors-api
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: 80
+    targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -49,14 +49,12 @@ spec:
             cpu: 100m
             memory: 100Mi
         env:
-        - name: PORT
-          value: '3000'
         - name: DB_CONNECTION
           valueFrom:
             secretKeyRef:
               name: databases-secret
               key: doctors
         - name: AUTH_URL
-          value: 'http://authentication-svc:3000'
+          value: 'http://authentication-svc'
         ports:
-        - containerPort: 3000
+        - containerPort: 80

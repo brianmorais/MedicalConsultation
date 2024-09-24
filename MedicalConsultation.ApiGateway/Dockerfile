@@ -8,5 +8,5 @@ FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
 WORKDIR /app
 COPY --from=build /app/published-app .
 ENTRYPOINT ["dotnet", "ApiGateway.dll"]
-
-EXPOSE 8080
+ENV ASPNETCORE_URLS=http://+:80
+EXPOSE 80

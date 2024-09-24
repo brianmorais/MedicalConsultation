@@ -11,5 +11,6 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 RUN npm ci --production
 COPY --from=builder /usr/src/app/dist ./dist
-EXPOSE 3000
+ENV PORT=80
+EXPOSE 80
 CMD [ "node", "dist/app.js" ]

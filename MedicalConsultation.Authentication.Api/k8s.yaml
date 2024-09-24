@@ -12,8 +12,8 @@ spec:
   selector:
     app: authentication-api
   ports:
-  - port: 3000
-    targetPort: 3000
+  - port: 80
+    targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -49,8 +49,6 @@ spec:
             cpu: 100m
             memory: 100Mi
         env:
-        - name: PORT
-          value: '3000'
         - name: DB_CONNECTION
           valueFrom:
             secretKeyRef:
@@ -74,4 +72,4 @@ spec:
               name: auth-secret
               key: basic-password
         ports:
-        - containerPort: 3000
+        - containerPort: 80

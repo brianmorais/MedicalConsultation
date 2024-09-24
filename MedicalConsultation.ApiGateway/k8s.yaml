@@ -12,8 +12,8 @@ spec:
   selector:
     app: apigateway
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 80
+    targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -42,50 +42,50 @@ spec:
             memory: 100Mi
         env:
         - name: GlobalConfigurations__BaseUrl
-          value: http://apigateway-svc.medical-consultaion:8080
+          value: http://apigateway-svc.medical-consultaion
         - name: Routes__0__DownstreamHostAndPorts__0__Host
           value: consultation-svc.medical-consultaion
         - name: Routes__0__DownstreamHostAndPorts__0__Port
-          value: '8080'
+          value: '80'
         - name: Routes__1__DownstreamHostAndPorts__0__Host
           value: consultation-svc.medical-consultaion
         - name: Routes__1__DownstreamHostAndPorts__0__Port
-          value: '8080'
+          value: '80'
         - name: Routes__2__DownstreamHostAndPorts__0__Host
           value: consultation-svc.medical-consultaion
         - name: Routes__2__DownstreamHostAndPorts__0__Port
-          value: '8080'
+          value: '80'
         - name: Routes__3__DownstreamHostAndPorts__0__Host
           value: authentication-svc.medical-consultaion
         - name: Routes__3__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__4__DownstreamHostAndPorts__0__Host
           value: authentication-svc.medical-consultaion
         - name: Routes__4__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__5__DownstreamHostAndPorts__0__Host
           value: doctors-svc.medical-consultaion
         - name: Routes__5__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__6__DownstreamHostAndPorts__0__Host
           value: doctors-svc.medical-consultaion
         - name: Routes__6__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__7__DownstreamHostAndPorts__0__Host
           value: doctors-svc.medical-consultaion
         - name: Routes__7__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__8__DownstreamHostAndPorts__0__Host
           value: patients-svc.medical-consultaion
         - name: Routes__8__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__9__DownstreamHostAndPorts__0__Host
           value: patients-svc.medical-consultaion
         - name: Routes__9__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         - name: Routes__10__DownstreamHostAndPorts__0__Host
           value: patients-svc.medical-consultaion
         - name: Routes__10__DownstreamHostAndPorts__0__Port
-          value: '3000'
+          value: '80'
         ports:
-        - containerPort: 8080
+        - containerPort: 80

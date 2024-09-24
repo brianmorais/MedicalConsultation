@@ -47,8 +47,8 @@ spec:
   selector:
     app: consultation-api
   ports:
-  - port: 8080
-    targetPort: 8080
+  - port: 80
+    targetPort: 80
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -97,11 +97,11 @@ spec:
         - name: Redis__ConnectionString
           value: consultation-redis-svc
         - name: Services__DoctorUrl
-          value: 'http://doctor-svc:3000'
+          value: 'http://doctor-svc'
         - name: Services__PatientUrl
-          value: 'http://patient-svc:3000'
+          value: 'http://patient-svc'
         - name: Services__AuthUrl
-          value: 'http://authentication-svc:3000'
+          value: 'http://authentication-svc'
         - name: DatabaseSettings__ConnectionString
           valueFrom:
             secretKeyRef:
@@ -110,4 +110,4 @@ spec:
         - name: DatabaseSettings__DatabaseName
           value: medicalAppointmentConsultation
         ports:
-        - containerPort: 8080
+        - containerPort: 80
