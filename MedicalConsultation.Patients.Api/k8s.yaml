@@ -57,7 +57,7 @@ spec:
               name: databases-secret
               key: patients
         - name: AUTH_URL
-          value: 'http://authentication-svc'
+          value: 'http://authentication-svc:3000'
         ports:
         - containerPort: 3000
       
