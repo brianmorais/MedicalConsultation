@@ -97,11 +97,11 @@ spec:
         - name: Redis__ConnectionString
           value: consultation-redis-svc
         - name: Services__DoctorUrl
-          value: 'http://doctor-svc'
+          value: 'http://doctors-api-svc'
         - name: Services__PatientUrl
-          value: 'http://patient-svc'
+          value: 'http://patients-api-svc'
         - name: Services__AuthUrl
-          value: 'http://authentication-svc'
+          value: 'http://authentication-api-svc'
         - name: DatabaseSettings__ConnectionString
           valueFrom:
             secretKeyRef:
