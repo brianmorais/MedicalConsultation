@@ -99,7 +99,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-  - host: medical-consultation.local
+  - host: medical-consultation.kube
     http:
       paths:
       - path: /
