@@ -23,6 +23,8 @@ func (c *ConsultationUseCase) GetAndSendDailyConsultations() {
 	var resp []entities.ConsultationModel
 
 	if resp = c.ConsultationRepository.GetDailyConsultations(); resp != nil {
+		c.ConsultationPublisher.OpenConnection()
+		defer c.ConsultationPublisher.CloseConnection()
 		var wg sync.WaitGroup
 		for _, v := range resp {
 			wg.Add(1)
