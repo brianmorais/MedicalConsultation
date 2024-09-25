@@ -19,15 +19,10 @@ func NewConsultationUseCase(
 	return ConsultationUseCase{}
 }
 
-func (c *ConsultationUseCase) GetAndSendDailyConsultations() error {
+func (c *ConsultationUseCase) GetAndSendDailyConsultations() {
 	var resp []entities.ConsultationModel
-	var err error
 
-	if resp, err = c.ConsultationRepository.GetDailyConsultations(); err == nil {
-		return err
-	}
-
-	if resp != nil {
+	if resp = c.ConsultationRepository.GetDailyConsultations(); resp != nil {
 		var wg sync.WaitGroup
 		for _, v := range resp {
 			wg.Add(1)
@@ -38,6 +33,4 @@ func (c *ConsultationUseCase) GetAndSendDailyConsultations() error {
 		}
 		wg.Wait()
 	}
-
-	return nil
 }

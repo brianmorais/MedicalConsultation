@@ -3,9 +3,9 @@ package entities
 import "time"
 
 type ConsultationModel struct {
-	Id               string    `json:"id"`
-	PatientDocument  string    `json:"patientId"`
-	ConsultationDate time.Time `json:"consultationDate"`
-	DoctorId         string    `json:"doctorId"`
-	Specialit        string    `json:"speciality"`
+	Id               string    `bson:"id"`
+	PatientDocument  string    `bson:"patientDocument"`
+	ConsultationDate time.Time `bson:"consultationDate"`
+	DoctorId         string    `bson:"doctorId"`
+	Speciality       string    `bson:"speciality"`
 }
