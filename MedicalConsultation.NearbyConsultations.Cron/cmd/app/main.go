@@ -8,7 +8,7 @@ import (
 )
 
 func main() {
-	godotenv.Load()
+	godotenv.Load("../../.env")
 	consultationUseCase := usecases.NewConsultationUseCase(repositories.NewConsultationRepository(), publishers.NewConsultationPublisher())
 	consultationUseCase.GetAndSendDailyConsultations()
 }

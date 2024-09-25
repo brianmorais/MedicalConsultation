@@ -16,7 +16,8 @@ func NewConsultationRepository() adapters_interfaces.IConsultationRepository {
 }
 
 func (c *ConsultationRepository) GetDailyConsultations() []entities.ConsultationModel {
-	collection, ctx := Connect()
+	collection, ctx := ConnectDb()
+	defer DisconnectDb()
 
 	today := time.Now()
 	beginDay := time.Date(today.Year(), today.Month(), today.Day(), 0, 0, 0, 0, today.Location())
