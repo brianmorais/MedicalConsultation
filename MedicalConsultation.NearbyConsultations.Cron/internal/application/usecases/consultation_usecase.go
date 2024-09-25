@@ -8,13 +8,13 @@ import (
 )
 
 type ConsultationUseCase struct {
-	ConsultationService adapters_interfaces.IConsultationService
-	ConsultationQueue   adapters_interfaces.IConsultationQueue
+	ConsultationRepository adapters_interfaces.IConsultationRepository
+	ConsultationPublisher  adapters_interfaces.IConsultationPublisher
 }
 
 func NewConsultationUseCase(
-	consultationService adapters_interfaces.IConsultationService,
-	consultationQueue adapters_interfaces.IConsultationQueue,
+	consultationRepository adapters_interfaces.IConsultationRepository,
+	consultationPublisher adapters_interfaces.IConsultationPublisher,
 ) ConsultationUseCase {
 	return ConsultationUseCase{}
 }
@@ -23,7 +23,7 @@ func (c *ConsultationUseCase) GetAndSendDailyConsultations() error {
 	var resp []entities.ConsultationModel
 	var err error
 
-	if resp, err = c.ConsultationService.GetDailyConsultations(); err == nil {
+	if resp, err = c.ConsultationRepository.GetDailyConsultations(); err == nil {
 		return err
 	}
 
@@ -33,7 +33,7 @@ func (c *ConsultationUseCase) GetAndSendDailyConsultations() error {
 			wg.Add(1)
 			go func(value entities.ConsultationModel) {
 				defer wg.Done()
-				c.ConsultationQueue.SendDailyConsultationToQueue(&value)
+				c.ConsultationPublisher.PublishDailyConsultation(&value)
 			}(v)
 		}
 		wg.Wait()
