@@ -64,8 +64,8 @@
 
 #### C4:
 
-![alt text](<resources/Sistema de gestão de consultas médicas - C4 - Container.jpg>)
+![Sistema de gestão de consultas médicas - C4 - Container](<resources/Sistema de gestão de consultas médicas - C4 - Container.jpg>)
 
 #### Fluxos:
 
-![alt text](<resources/Sistema de gestão de consultas médicas - Fluxo.jpg>)
+![Sistema de gestão de consultas médicas - Fluxo](<resources/Sistema de gestão de consultas médicas - Fluxo.jpg>)
