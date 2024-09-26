@@ -15,8 +15,8 @@ type ConsultationUseCase struct {
 func NewConsultationUseCase(
 	consultationRepository adapters_interfaces.IConsultationRepository,
 	consultationPublisher adapters_interfaces.IConsultationPublisher,
-) *ConsultationUseCase {
-	return &ConsultationUseCase{
+) ConsultationUseCase {
+	return ConsultationUseCase{
 		ConsultationRepository: consultationRepository,
 		ConsultationPublisher:  consultationPublisher,
 	}
