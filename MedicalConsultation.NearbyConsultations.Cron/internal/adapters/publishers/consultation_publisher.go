@@ -23,7 +23,7 @@ func NewConsultationPublisher() adapters_interfaces.IConsultationPublisher {
 
 func logError(err error, message string) {
 	if err != nil {
-		log.Fatal(message)
+		log.Fatalf("%v: %v", message, err.Error())
 	}
 }
 
