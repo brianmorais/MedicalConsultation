@@ -69,9 +69,9 @@ spec:
             - name: RABBITMQ_CONNECTION
               value: amqp://guest:guest@nearby-consultations-rmq-svc:5672
             - name: EXCHANGE_NAME
-              value: medicalConsultation
+              value: nearbyConsultations
             - name: QUEUE_NAME
-              value: medicalConsultation.queue
+              value: nearbyConsultations.queue
             - name: EXCHANGE_SUB
-              value: medicalConsultation.sub
+              value: nearbyConsultations.sub
           restartPolicy: OnFailure
