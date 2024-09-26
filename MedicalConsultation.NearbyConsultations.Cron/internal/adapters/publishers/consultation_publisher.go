@@ -29,7 +29,7 @@ func logError(err error, message string) {
 
 func (c *ConsultationPublisher) OpenConnection() {
 	var err error
-	connStr := os.Getenv("RABBITMQ_CONECTION")
+	connStr := os.Getenv("RABBITMQ_CONNECTION")
 	exchangeName := os.Getenv("EXCHANGE_NAME")
 	queueName := os.Getenv("QUEUE_NAME")
 	exchangeSub := os.Getenv("EXCHANGE_SUB")
