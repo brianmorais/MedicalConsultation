@@ -521,6 +521,8 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
+**/appsettings.Development.json
+
 # JetBrains Rider
 
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore,csharp
