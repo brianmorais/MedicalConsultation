@@ -1,0 +1,101 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: medical-consultation
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consultation-notification-redis-svc
+  namespace: medical-consultation
+spec:
+  selector:
+    app: consultation-notification-redis
+  ports:
+  - port: 6379
+    targetPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consultation-notification-redis
+  namespace: medical-consultation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consultation-notification-redis
+  template:
+    metadata:
+      labels:
+        app: consultation-notification-redis
+    spec:
+      containers:
+      - name: consultation-notification-redis
+        image: redis:7-alpine
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 100m
+          limits:
+            memory: 100Mi
+            cpu: 100m
+        ports:
+        - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consultation-notification-consumer
+  namespace: medical-consultation
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consultation-notification-consumer
+  template:
+    metadata:
+      labels:
+        app: consultation-notification-consumer
+    spec:
+      containers:
+      - name: consultation-notification-consumer
+        image: brianmorais/medical-consultation-consultation-notification-consumer:latest
+        resources:
+          requests:
+            memory: 100Mi
+            cpu: 100m
+          limits:
+            memory: 100Mi
+            cpu: 100m
+        env:
+        - name: Redis__ConnectionString
+          value: consultation-notification-redis-svc
+        - name: Services__DoctorUrl
+          value: 'http://doctors-api-svc'
+        - name: Services__PatientUrl
+          value: 'http://patients-api-svc'
+        - name: RabbitMqSettings__HostName
+          value: nearby-consultations-rmq-svc
+        - name: RabbitMqSettings__UserName
+          value: guest
+        - name: RabbitMqSettings__Password
+          value: guest
+        - name: RabbitMqSettings__ExchangeName
+          value: nearbyConsultations
+        - name: RabbitMqSettings__QueueName
+          value: nearbyConsultations.queue
+        - name: RabbitMqSettings__ExchangeSub
+          value: nearbyConsultations.sub
+        - name: AuthSettins__BasicUserName
+          valueFrom:
+            secretKeyRef:
+              name: auth-secret
+              key: basic-username
+        - name: AuthSettins__BasicPassword
+          valueFrom:
+            secretKeyRef:
+              name: auth-secret
+              key: basic-password
+        ports:
+        - containerPort: 80

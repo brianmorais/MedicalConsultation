@@ -5,11 +5,17 @@ VisualStudioVersion = 17.11.35303.130
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Consumer", "Consumer\Consumer.csproj", "{DFEEFDCF-C860-46FB-A6B7-0B798A02417C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{BE9DD35D-8E35-4F60-A08D-93C7383E8C6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{BE9DD35D-8E35-4F60-A08D-93C7383E8C6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{44FA8B2D-34B6-47B9-BFB6-7B41E2D75B16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{44FA8B2D-34B6-47B9-BFB6-7B41E2D75B16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{2BADAE2B-B549-4BB6-833E-FEC0967EBBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{2BADAE2B-B549-4BB6-833E-FEC0967EBBCA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{179D8435-5DD6-42B3-B5CC-096B5D09BCDC}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+		k8s.yaml = k8s.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
