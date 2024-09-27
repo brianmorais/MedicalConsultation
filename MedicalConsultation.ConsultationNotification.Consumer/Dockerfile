@@ -7,6 +7,6 @@ RUN dotnet publish -o /app/published-app
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 as runtime
 WORKDIR /app
 COPY --from=build /app/published-app .
-ENTRYPOINT ["dotnet", "Api.dll"]
+ENTRYPOINT ["dotnet", "Consumer.dll"]
 ENV ASPNETCORE_URLS=http://+:80
 EXPOSE 80
