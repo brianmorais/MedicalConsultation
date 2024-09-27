@@ -22,11 +22,11 @@ namespace Consumer.Ioc
             var patientServiceUrl = configuration["Services:PatientUrl"] ?? string.Empty;
 
             services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnection));
-            services.AddScoped<IRedisCache, RedisCache>();
+            services.AddSingleton<IRedisCache, RedisCache>();
             services.AddScoped<IDoctorService, DoctorService>();
             services.AddScoped<IPatientService, PatientService>();
-            services.AddScoped<IEmailService, EmailService>();
-            services.AddScoped<INotificationHandler, NotificationHandler>();
+            services.AddSingleton<IEmailService, EmailService>();
+            services.AddSingleton<INotificationHandler, NotificationHandler>();
             services.AddHttpClient<IDoctorService, DoctorService>(options => options.BaseAddress = new Uri(doctorServiceUrl));
             services.AddHttpClient<IPatientService, PatientService>(options => options.BaseAddress = new Uri(patientServiceUrl));
             services.AddHostedService<RabbitMqConsumer>();

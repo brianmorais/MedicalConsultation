@@ -31,7 +31,7 @@ namespace Consumer.MessageConsumer
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
 
-            _channel.ExchangeDeclare(_rabbitMqSettings.ExchangeName, ExchangeType.Topic);
+            _channel.ExchangeDeclare(_rabbitMqSettings.ExchangeName, ExchangeType.Topic, durable: true);
             _channel.QueueDeclare(_rabbitMqSettings.QueueName, false, false, false, null);
 
             _channel.QueueBind(_rabbitMqSettings.QueueName, _rabbitMqSettings.ExchangeName, _rabbitMqSettings.ExchangeSub);
